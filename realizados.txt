@@ -1,0 +1,12 @@
+1. Uso de funções / Módulos (FEITO)
+2. Valdação de Códigos (Entradas)
+3. Uso de structs (FEITO)
+4. Uso de alocação dinâmica
+5. Uso de aritmética de ponteiros
+6. Uso de recursão
+7. Uso de metódos de ordenação
+8. Uso de Busca Binária
+9. Uso de testes
+10. Respostas à arguição
+
+- Arrumar erro de mensagem no menuJogadores
