@@ -1,8 +1,8 @@
 #ifndef DADOS_H
 #define DADOS_H
 
-#include <vector>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -22,13 +22,13 @@ typedef struct {
     Estatistica desempenho;
 } Jogador;
 
-void menu(int highlight);
-void menuJogadores(int highlightJogadores, vector<Jogador>& jogadores, int nmr);
-void mostrarEstatisticas(const Jogador& jogador);
-void desempenhoTime(vector<Jogador>& jogadores);
-void preencheJogadores(vector<Jogador>& jogadores);
-void galeria();
 void setConsoleColor(int color);
-void mostrarHistoria();
+void preencheJogadores(vector<Jogador>& jogadores);
+bool compareByName(const Jogador& a, const Jogador& b);
+string toLower(const string& str);
+int buscaBinaria(const vector<Jogador>& jogadores, const string& nome);
+void listarJogadores(const vector<Jogador>& jogadores);
+void buscarJogador(vector<Jogador>& jogadores);
+void desempenhoJogador(vector<Jogador>& jogadores, int indice);
 
 #endif // DADOS_H

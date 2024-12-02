@@ -1,6 +1,6 @@
-1. Uso de funções / Módulos (FEITO)
+1. Uso de funções / Módulos
 2. Valdação de Códigos (Entradas)
-3. Uso de structs (FEITO)
+3. Uso de structs
 4. Uso de alocação dinâmica
 5. Uso de aritmética de ponteiros
 6. Uso de recursão

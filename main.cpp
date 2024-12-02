@@ -1,65 +1,39 @@
 #include "dados.h"
 #include <iostream>
-#include <vector>
 #include <conio.h>
 #include <windows.h>
+#include <vector>
 
 using namespace std;
 
 int main() {
     vector<Jogador> jogadores;
+    preencheJogadores(jogadores); // Preenche a lista de jogadores
 
-    preencheJogadores(jogadores);
+    int op = 0;
+    while (op != 3) {
+        cout << endl << "Menu:" << endl;
+        cout << "1. Buscar Jogador" << endl;;
+        cout << "2. Listar Todos os Jogadores" << endl;
+        cout << "3. Sair" << endl;
+        cout << "Escolha uma opcao: ";
+        
+        int op;
+        cin >> op;
 
-    int nmrJogadores = jogadores.size();
-    int highlightJogadores = 0;
-    int highlight = 0;
-    int choice = 0;
-
-    while (true) {
-        menu(highlight);
-
-        int key = _getch();
-
-        if (key == 224) {
-            key = _getch();
-            switch (key) {
-                case 72:
-                    highlight--;
-                    if (highlight < 0) highlight = 3;
-                    break;
-                case 80:
-                    highlight++;
-                    if (highlight > 6) highlight = 0;
-                    break;
-            }
-        } else if (key == 13) {
-            choice = highlight;
-            switch (choice) {
-                case 0:
-                    system("cls");
-                    menuJogadores(highlightJogadores, jogadores, nmrJogadores);
-                    break;
-                case 1:
-                    galeria();
-                    break;
-                case 2:
-                    system("cls");
-                    mostrarHistoria();
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    cout << "Finalizado" << endl;
-                    return 0;
-                default:
-                    break;
-            }
-            system("pause");
+        switch (op) {
+            case 1:
+                buscarJogador(jogadores);
+                break;
+            case 2:
+                listarJogadores(jogadores);
+                break;
+            case 3:
+                cout << "Saindo do programa." << endl;
+                return 0;
+            default:
+                cout << "Opcao invalida. Tente novamente." << endl;
         }
-        system("cls"); // Limpa a tela
     }
 
     return 0;
