@@ -3,9 +3,9 @@
 #include <windows.h>
 #include <conio.h>
 #include <vector>
-#include <algorithm> // Para std::sort
-#include <iostream> // Para std::cout, std::cin
-#include <cctype> // Para std::tolower
+#include <algorithm>
+#include <iostream>
+#include <cctype>
 
 using namespace std;
 
@@ -81,14 +81,17 @@ int buscaBinaria(const vector<Jogador>& jogadores, const string& nome) {
 
 // Função para listar todos os jogadores
 void listarJogadores(const vector<Jogador>& jogadores) {
-    cout << "Jogadores disponiveis:\n";
+    system("cls");
+    cout << endl << "Jogadores:" << endl;
     for (const auto& jogador : jogadores) {
         cout << "- " << jogador.nome << endl;
     }
+    cout<<endl;
 }
 
 // Função para buscar jogador e exibir suas estatísticas
 void buscarJogador(vector<Jogador>& jogadores) {
+    system("cls");
     string nome;
     cout << endl << "Digite o nome do jogador que deseja buscar (ou parte do nome): ";
     cin.ignore();
@@ -124,6 +127,7 @@ void buscarJogador(vector<Jogador>& jogadores) {
 }
 
 void desempenhoJogador(vector<Jogador>& jogadores, int indice) {
+    system("cls");
     Jogador jogador = jogadores[indice];
     cout << "Nome: " << jogador.nome << endl;
     cout << "Posicao: " << jogador.pos << endl;
@@ -133,5 +137,5 @@ void desempenhoJogador(vector<Jogador>& jogadores, int indice) {
     cout << "Partidas: " << jogador.desempenho.partidas << endl;
     cout << "Vitorias: " << jogador.desempenho.vitorias << endl;
     cout << "Derrotas: " << jogador.desempenho.derrotas << endl;
-    cout << "Empates: " << jogador.desempenho.empates << endl;
+    cout << "Empates: " << jogador.desempenho.empates << endl << endl;
 }
