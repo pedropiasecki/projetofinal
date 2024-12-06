@@ -57,27 +57,28 @@ string toLower(const string& str) {
     return lowerStr;
 }
 
-// Função de busca binária
-int buscaBinaria(const vector<Jogador>& jogadores, const string& nome) {
-    int esquerda = 0;
-    int direita = jogadores.size() - 1;
-
-    while (esquerda <= direita) {
-        int meio = esquerda + (direita - esquerda) / 2;
-
-        if (toLower(jogadores[meio].nome) == toLower(nome)) {
-            return meio; // Retorna o índice do jogador encontrado
-        }
-
-        if (toLower(jogadores[meio].nome) < toLower(nome)) {
-            esquerda = meio + 1; // Busca na metade direita
-        } else {
-            direita = meio - 1; // Busca na metade esquerda
-        }
+int buscaBinaria(const vector<Jogador>& jogadores, const string& nome, int esquerda, int direita) {
+    // Caso base: se o intervalo for inválido, o jogador não foi encontrado
+    if (esquerda > direita) {
+        return -1;
     }
 
-    return -1; // Jogador não encontrado
+    int meio = esquerda + (direita - esquerda) / 2;
+
+    // Verifica se o nome do jogador no meio corresponde ao nome procurado
+    if (toLower(jogadores[meio].nome) == toLower(nome)) {
+        return meio; // Retorna o índice do jogador encontrado
+    }
+
+    // Se o nome no meio é menor que o nome procurado, busca na metade direita
+    if (toLower(jogadores[meio].nome) < toLower(nome)) {
+        return buscaBinaria(jogadores, nome, meio + 1, direita);
+    } else {
+        // Caso contrário, busca na metade esquerda
+        return buscaBinaria(jogadores, nome, esquerda, meio - 1);
+    }
 }
+
 
 // Função para listar todos os jogadores
 void listarJogadores(const vector<Jogador>& jogadores) {
@@ -115,7 +116,7 @@ void buscarJogador(vector<Jogador>& jogadores) {
     } else {
         cout << endl << "Digite o nome exato do jogador para ver suas estatisticas: ";
         getline(cin, nome);
-        int indice = buscaBinaria(jogadores, nome);
+        int indice = buscaBinaria(jogadores, nome, 0, jogadores.size() - 1);
 
         if (indice != -1) {
             cout<<endl;
@@ -138,4 +139,117 @@ void desempenhoJogador(vector<Jogador>& jogadores, int indice) {
     cout << "Vitorias: " << jogador.desempenho.vitorias << endl;
     cout << "Derrotas: " << jogador.desempenho.derrotas << endl;
     cout << "Empates: " << jogador.desempenho.empates << endl << endl;
+}
+
+void mostrarTitulos() {
+    system("cls");
+    
+}
+
+void mostrarTabelas() {
+    system("cls");
+    int op = 0;
+    
+    while (op != 5) {
+        cout << "1. Brasileirao" << endl;
+        cout << "2. Gaucho" << endl;
+        cout << "3. Copa do Brasil" << endl;
+        cout << "4. Libertadores" << endl;
+        cout << "5. Voltar ao menu" << endl;
+        cout << "Escolha uma opcao: ";
+
+        // Ler a entrada do usuário como string
+        string input;
+        cin >> input;
+
+        // Tentar converter a entrada para um número inteiro
+        try {
+            op = stoi(input);
+        } catch (invalid_argument&) {
+            cout << endl << "Entrada invalida. Por favor, insira um numero inteiro." << endl;
+            continue; // Voltar para o início do loop
+        } catch (out_of_range&) {
+            cout << endl << "Numero fora do intervalo permitido. Tente novamente." << endl;
+            continue; // Voltar para o início do loop
+        }
+
+        switch (op) {
+            case 1:
+                brasileirao();
+                break;
+            case 2:
+                gaucho();
+                break;
+            case 3:
+                cdb();
+                break;
+            case 4:
+                libertadores();
+                break;
+            case 5:
+                break;
+            default:
+                cout << "Opcao invalida. Tente novamente." << endl;
+        }
+    }
+    system("cls");
+}
+
+void brasileirao() {
+    system("cls");
+    cout << "TESTE" << endl;
+
+    cout << endl;
+
+}
+
+void gaucho() {
+    system("cls");
+    cout << "TESTE" << endl;
+
+    cout << endl;
+
+}
+
+void cdb() {
+    system("cls");
+    cout << "TESTE" << endl;
+
+    cout << endl;
+
+}
+
+void libertadores() {
+    system("cls");
+    cout << "TESTE" << endl;
+
+    cout << endl;
+
+}
+
+void mostrarJogos() {
+    system("cls");
+    cout << "Proximos jogos: " << endl;
+
+    cout << endl;
+}
+
+void mostrarDesempenho(const vector<Jogador>& jogadores) {
+    system("cls");
+    cout << "Desempenho Temporada 2024" << endl;
+    /*
+    criar estatisticas
+    */
+
+    cout << endl;
+}
+
+void mostrarArtilharia(const vector<Jogador>& jogadores) {
+    system("cls");
+
+    /*
+    usar as structs para isso 
+    */
+
+    cout << endl;
 }

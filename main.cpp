@@ -7,15 +7,21 @@
 using namespace std;
 
 int main() {
+    system("cls");
     vector<Jogador> jogadores;
     preencheJogadores(jogadores); // Preenche a lista de jogadores
 
    int op = 0;
     
-    while (op != 3) {
-        cout << "1. Buscar Jogador" << endl;
-        cout << "2. Listar Todos os Jogadores" << endl;
-        cout << "3. Sair" << endl;
+    while (op != 8) {
+        cout << "1. Titulos" << endl;
+        cout << "2. Tabela" << endl;
+        cout << "3. Proximos jogos" << endl;
+        cout << "4. Desempenho" << endl;
+        cout << "5. Artilharia" << endl;
+        cout << "6. Listar Jogadores" << endl;
+        cout << "7. Buscar Jogador" << endl;
+        cout << "8. Sair" << endl;
         cout << "Escolha uma opcao: ";
 
         // Ler a entrada do usuário como string
@@ -35,20 +41,33 @@ int main() {
 
         switch (op) {
             case 1:
-                buscarJogador(jogadores);
+                mostrarTitulos();
                 break;
             case 2:
-                listarJogadores(jogadores);
+                mostrarTabelas();
                 break;
             case 3:
+                mostrarJogos();
+                break;
+            case 4:
+                mostrarDesempenho(jogadores);
+                break;
+            case 5:
+                mostrarArtilharia(jogadores);
+                break;
+            case 6:
+                listarJogadores(jogadores);
+                break;
+            case 7:
+                buscarJogador(jogadores);
+                break;
+            case 8:
                 cout << "Saindo do programa." << endl;
                 return 0;
             default:
                 cout << "Opcao invalida. Tente novamente." << endl;
         }
     }
-
-    return 0;
 
     return 0;
 }
