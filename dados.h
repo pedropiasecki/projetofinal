@@ -23,22 +23,22 @@ typedef struct {
 } Jogador;
 
 typedef struct {
-    string nomeG;
-    int golsG;
-} ArtilhariaGols;
+    string nomeTime;
+    int golsMarcados;
+    int golsSofridos;
+    int vitorias;
+    int empates;
+    int derrotas;
+    int titulos;
+} Time;
 
-typedef struct {
-    string nomeA;
-    int assisA;
-} ArtilhariaAssis;
-
-void setConsoleColor(int color);
 void preencheJogadores(vector<Jogador>& jogadores);
+void preencheTime(Time& clube);
 bool compareByName(const Jogador& a, const Jogador& b);
 string toLower(const string& str);
 int buscaBinaria(const vector<Jogador>& jogadores, const string& nome);
-void listarJogadores(const vector<Jogador>& jogadores);
 void buscarJogador(vector<Jogador>& jogadores);
+void listarJogadores(const vector<Jogador>& jogadores);
 void desempenhoJogador(vector<Jogador>& jogadores, int indice);
 void mostrarTitulos();
 void mostrarTabelas();
@@ -47,7 +47,8 @@ void gaucho();
 void cdb();
 void libertadores();
 void mostrarJogos();
-void mostrarDesempenho(const vector<Jogador>& jogadores);
+void mostrarDesempenho(Time& clube);
+void insertionSort(vector<Jogador>& jogadores, int nmr);
 void mostrarArtilharia(const vector<Jogador>& jogadores);
 
 #endif // DADOS_H

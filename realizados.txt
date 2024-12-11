@@ -1,10 +1,10 @@
 1. Uso de funções / Módulos (FEITO)
 2. Valdação de Códigos (Entradas) (FEITO)
 3. Uso de structs (FEITO)
-4. Uso de alocação dinâmica
+4. Uso de alocação dinâmica (FEITO)
 5. Uso de aritmética de ponteiros
 6. Uso de recursão (FEITO)
-7. Uso de metódos de ordenação
+7. Uso de metódos de ordenação (FEITO)
 8. Uso de Busca Binária (FEITO)
 9. Uso de testes
 10. Respostas à arguição

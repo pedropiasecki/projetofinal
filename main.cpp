@@ -1,15 +1,16 @@
 #include "dados.h"
 #include <iostream>
 #include <conio.h>
-#include <windows.h>
 #include <vector>
 
 using namespace std;
 
 int main() {
-    system("cls");
+    cout << "\033[2J\033[1;1H";
+    Time clube = {};
     vector<Jogador> jogadores;
-    preencheJogadores(jogadores); // Preenche a lista de jogadores
+    preencheJogadores(jogadores);
+    preencheTime(clube);
 
    int op = 0;
     
@@ -50,7 +51,7 @@ int main() {
                 mostrarJogos();
                 break;
             case 4:
-                mostrarDesempenho(jogadores);
+                mostrarDesempenho(clube);
                 break;
             case 5:
                 mostrarArtilharia(jogadores);
