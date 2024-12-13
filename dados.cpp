@@ -1,11 +1,22 @@
 #include "dados.h"
 #include <iostream>
-#include <conio.h>
 #include <vector>
 #include <algorithm>
 #include <cctype>
+#include <stdlib.h>
+#include <iomanip>
+#include <unistd.h>
+#include <fstream>
 
 using namespace std;
+
+void clearScreen() {
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
+}
 
 void preencheJogadores(vector<Jogador>& jogadores) {
     jogadores = {
@@ -42,7 +53,7 @@ void preencheTime(Time& clube) {
 }
 
 // comparação para ordenar jogadores pelo nome
-bool compareNome(const Jogador& a, const Jogador& b) {
+bool compararNome(const Jogador& a, const Jogador& b) {
     return a.nome < b.nome;
 }
 
@@ -79,17 +90,17 @@ int buscaBinaria(const vector<Jogador>& jogadores, const string& nome, int esque
 
 // buscar jogador e exibir suas estatísticas
 void buscarJogador(vector<Jogador>& jogadores) {
-    cout << "\033[2J\033[1;1H";
+    clearScreen();
     string nome;
-    cout << "Digite o nome do jogador que deseja buscar (ou parte do nome): ";
+    cout << "Digite o nome do jogador que deseja buscar: ";
     cin.ignore();
     getline(cin, nome);
 
     // Ordenar o vetor de jogadores pelo nome
-    sort(jogadores.begin(), jogadores.end(), compareNome);
+    sort(jogadores.begin(), jogadores.end(), compararNome);
 
     // Listar jogadores que correspondem à busca
-    cout << endl << "Resultados da busca para \"" << nome << "\":\n";
+    cout << endl << "Resultados da busca para " << nome << endl;
     bool encontrado = false;
     for (const auto& jogador : jogadores) {
         if (toLower(jogador.nome).find(toLower(nome)) != string::npos) {
@@ -115,8 +126,8 @@ void buscarJogador(vector<Jogador>& jogadores) {
 }
 
 void listarJogadores(const vector<Jogador>& jogadores) {
-    cout << "\033[2J\033[1;1H";
-    cout << endl << "Jogadores:" << endl;
+    clearScreen();
+    cout << "Jogadores:" << endl;
     for (const auto& jogador : jogadores) {
         cout << "- " << jogador.nome << endl;
     }
@@ -124,134 +135,47 @@ void listarJogadores(const vector<Jogador>& jogadores) {
 }
 
 void desempenhoJogador(vector<Jogador>& jogadores, int indice) {
-    cout << "\033[2J\033[1;1H";
-    Jogador jogador = jogadores[indice];
-    cout << "Nome: " << jogador.nome << endl;
-    cout << "Posicao: " << jogador.pos << endl;
-    cout << "Idade: " << jogador.idade << endl;
-    cout << "Gols: " << jogador.desempenho.gols << endl;
-    cout << "Assistencias: " << jogador.desempenho.assis << endl;
-    cout << "Partidas: " << jogador.desempenho.partidas << endl;
-    cout << "Vitorias: " << jogador.desempenho.vitorias << endl;
-    cout << "Derrotas: " << jogador.desempenho.derrotas << endl;
-    cout << "Empates: " << jogador.desempenho.empates << endl << endl;
+    clearScreen();
+    Jogador* jogador = &jogadores[indice];
+    cout << "Nome: " << jogador->nome << endl;
+    cout << "Posicao: " << jogador->pos << endl;
+    cout << "Idade: " << jogador->idade << endl;
+    cout << "Gols: " << jogador->desempenho.gols << endl;
+    cout << "Assistencias: " << jogador->desempenho.assis << endl;
+    cout << "Partidas: " << jogador->desempenho.partidas << endl;
+    cout << "Vitorias: " << jogador->desempenho.vitorias << endl;
+    cout << "Derrotas: " << jogador->desempenho.derrotas << endl;
+    cout << "Empates: " << jogador->desempenho.empates << endl << endl;
 }
+
 
 void mostrarTitulos() {
-    cout << "\033[2J\033[1;1H";
-    cout << "Campeonato Brasileiro: 3 titulos (1975, 1976, 1979)" << endl;
-    cout << "Copa do Brasil: 1 titulo (1992)" << endl;
-    cout << "Copa Libertadores da America: 2 titulos (2006, 2010)" << endl;
-    cout << "Recopa Sul-Americana: 2 titulos (2007, 2011)" << endl;
-    cout << "Copa Sul-Americana: 1 titulo (2008)" << endl;
-    cout << "Copa Suruga Bank: 1 titulo (2009)" << endl;
-    cout << "Campeonato Gaucho: 45 titulos (1927, 1934, 1940, 1941, 1942, 1943, 1944, 1945, 1947, 1948, 1950, 1951, 1952, 1953, 1955, 1961, 1969, 1970, 1971, 1972, 1973, 1974, 1975, 1976, 1978, 1981, 1982, 1983, 1984, 1991, 1992, 1994, 1997, 2002, 2003, 2004, 2005, 2008, 2009, 2011, 2012, 2013, 2014, 2015, 2016)" << endl;
-    cout << "Supercampeonato Gaucho: 1 titulo (2002)" << endl;
-    cout << "Torneio Heleno Nunes: 1 titulo (1984)" << endl;
-    cout << "Copa Federacao Gaucha de Futebol: 1 titulo (2009)" << endl << endl;
+    clearScreen();
+    cout << "Campeonato Brasileiro: 3 titulos" << endl;
+    cout << "Copa do Brasil: 1 titulo" << endl;
+    cout << "Copa Libertadores da America: 2 titulos" << endl;
+    cout << "Recopa Sul-Americana: 2 titulos" << endl;
+    cout << "Copa Sul-Americana: 1 titulo" << endl;
+    cout << "Copa Suruga Bank: 1 titulo" << endl;
+    cout << "Campeonato Gaucho: 45 titulo" << endl;
+    cout << "Supercampeonato Gaucho: 1 titulo" << endl;
+    cout << "Torneio Heleno Nunes: 1 titulo" << endl;
+    cout << "Copa Federacao Gaucha de Futebol: 1 titulo" << endl << endl;
     
-}
-
-void mostrarTabelas() {
-    cout << "\033[2J\033[1;1H";
-    int op = 0;
-    
-    while (op != 5) {
-        cout << "1. Brasileirao" << endl;
-        cout << "2. Gaucho" << endl;
-        cout << "3. Copa do Brasil" << endl;
-        cout << "4. Libertadores" << endl;
-        cout << "5. Voltar ao menu" << endl;
-        cout << "Escolha uma opcao: ";
-
-        // Ler a entrada do usuário como string
-        string input;
-        cin >> input;
-
-        // Tentar converter a entrada para um número inteiro
-        try {
-            op = stoi(input);
-        } catch (invalid_argument&) {
-            cout << endl << "Entrada invalida. Por favor, insira um numero inteiro." << endl;
-            continue; // Voltar para o início do loop
-        } catch (out_of_range&) {
-            cout << endl << "Numero fora do intervalo permitido. Tente novamente." << endl;
-            continue; // Voltar para o início do loop
-        }
-
-        switch (op) {
-            case 1:
-                brasileirao();
-                break;
-            case 2:
-                gaucho();
-                break;
-            case 3:
-                cdb();
-                break;
-            case 4:
-                libertadores();
-                break;
-            case 5:
-                break;
-            default:
-                cout << "Opcao invalida. Tente novamente." << endl;
-        }
-    }
-    cout << "\033[2J\033[1;1H";
-}
-
-void brasileirao() {
-    cout << "\033[2J\033[1;1H";
-    cout << "TESTE" << endl;
-
-    cout << endl;
-
-}
-
-void gaucho() {
-    cout << "\033[2J\033[1;1H";
-    cout << "TESTE" << endl;
-
-    cout << endl;
-
-}
-
-void cdb() {
-    cout << "\033[2J\033[1;1H";
-    cout << "TESTE" << endl;
-
-    cout << endl;
-
-}
-
-void libertadores() {
-    cout << "\033[2J\033[1;1H";
-    cout << "TESTE" << endl;
-
-    cout << endl;
-
-}
-
-void mostrarJogos() {
-    cout << "\033[2J\033[1;1H";
-    cout << "Proximos jogos: " << endl;
-
-    cout << endl;
 }
 
 void mostrarDesempenho(Time& clube) { 
-    cout << "\033[2J\033[1;1H";
+    clearScreen();
     cout << "Desempenho Temporada 2024" << endl;
 
     int* desempenho = new int[6];
 
-    desempenho[0] = clube.golsMarcados;
-    desempenho[1] = clube.golsSofridos;
-    desempenho[2] = clube.vitorias;
-    desempenho[3] = clube.empates;
-    desempenho[4] = clube.derrotas;
-    desempenho[5] = clube.titulos;
+    *(desempenho + 0) = clube.golsMarcados;
+    *(desempenho + 1) = clube.golsSofridos;
+    *(desempenho + 2) = clube.vitorias;
+    *(desempenho + 3) = clube.empates;
+    *(desempenho + 4) = clube.derrotas;
+    *(desempenho + 5) = clube.titulos;
 
     cout << "Time: " << clube.nomeTime << endl;
     cout << "Gols Marcados: " << *(desempenho + 0) << endl;
@@ -261,13 +185,11 @@ void mostrarDesempenho(Time& clube) {
     cout << "Derrotas: " << *(desempenho + 4) << endl;
     cout << "Titulos Conquistados: " << *(desempenho + 5) << endl;
 
-    // saldo de gols
     int saldoGols = *(desempenho + 0) - *(desempenho + 1);
     cout << "Saldo de Gols: " << saldoGols << endl;
 
-    // aproveitamento
     double aproveitamento = (double)*(desempenho + 2) / ( *(desempenho + 2) + *(desempenho + 3) + *(desempenho + 4) ) * 100;
-    cout << "Indice de Aproveitamento: " << aproveitamento << "%" << endl;
+    cout << fixed << setprecision(2) << "Indice de Aproveitamento: " << aproveitamento << "%" << endl;
 
     delete[] desempenho;
 
@@ -279,8 +201,7 @@ void insertionSort(vector<Jogador>& jogadores, int nmr) {
     for (size_t i = 1; i < jogadores.size(); ++i) {
         Jogador key = jogadores[i];
         int j = i - 1;
-        
-        // ordenamento para gols (1) e assistencias (0)
+
         if (nmr == 1) {
             while (j >= 0 && jogadores[j].desempenho.gols < key.desempenho.gols) {
                 jogadores[j + 1] = jogadores[j];
@@ -296,8 +217,10 @@ void insertionSort(vector<Jogador>& jogadores, int nmr) {
     }
 }
 
+
+
 void mostrarArtilharia(const vector<Jogador>& jogadores) {
-    cout << "\033[2J\033[1;1H";
+    clearScreen();
 
     vector<Jogador> jogadoresPorGols = jogadores;
     vector<Jogador> jogadoresPorAssis = jogadores;
@@ -316,4 +239,131 @@ void mostrarArtilharia(const vector<Jogador>& jogadores) {
     }
 
     cout << endl;
+}
+
+
+void gerencia(vector<Jogador>& jogadores) {
+    clearScreen();
+    int op = 0;
+    
+    while (op != 3) {
+        cout << "1. Excluir jogador" << endl;
+        cout << "2. Adicionar jogador" << endl;
+        cout << "3. Voltar" << endl;
+        cout << "Escolha uma opcao: ";
+
+        string input;
+        cin >> input;
+
+        try {
+            op = stoi(input);
+        } catch (invalid_argument&) {
+            cout << endl << "Entrada invalida. Por favor, insira um numero inteiro." << endl;
+            continue;
+        } catch (out_of_range&) {
+            cout << endl << "Numero fora do intervalo permitido. Tente novamente." << endl;
+            continue;
+        }
+
+        switch (op) {
+            case 1:
+                excluirJogador(jogadores);
+                break;
+            case 2:
+                addNovoJogador(jogadores);
+                break;
+            case 3:
+                break;
+            default:
+                cout << "Opcao invalida. Tente novamente." << endl;
+        }
+    }
+
+    clearScreen();
+}
+
+void excluirJogador(vector<Jogador>& jogadores) {
+    clearScreen();
+    string nome;
+    cout << "Digite o nome do jogador que deseja excluir: ";
+    cin.ignore();
+    getline(cin, nome);
+
+    sort(jogadores.begin(), jogadores.end(), compararNome);
+
+    int indice = buscaBinaria(jogadores, nome, 0, jogadores.size() - 1);
+    
+    if (indice != -1) {
+        jogadores.erase(jogadores.begin() + indice);
+        cout << "Jogador " << nome << " excluido com sucesso!" << endl;
+    } else {
+        cout << "Jogador nao encontrado." << endl;
+    }
+    sleep(2);
+
+    clearScreen();
+}
+
+bool jogadorExiste(const vector<Jogador>& jogadores, const string& nome) {
+    string nomeN = toLower(nome);
+    return any_of(jogadores.begin(), jogadores.end(), [&nomeN](const Jogador& jogador) {
+        return toLower(jogador.nome) == nomeN;
+    });
+}
+
+void addNovoJogador(vector<Jogador>& jogadores) {
+    clearScreen();
+    Jogador novoJogador = {"#", "#", 0, {0, 0, 0, 0, 0, 0}};
+    cout << "Digite o nome do novo jogador: ";
+    cin.ignore();
+    getline(cin, novoJogador.nome);
+
+    if (jogadorExiste(jogadores, novoJogador.nome)) {
+        cout << "Diferencie o nome " << novoJogador.nome << endl;
+        sleep(2);
+        return;
+    }
+    
+    cout << "Digite a posicao do jogador: ";
+    getline(cin, novoJogador.pos);
+    
+    cout << "Digite a idade do jogador: ";
+    cin >> novoJogador.idade;
+
+    jogadores.push_back(novoJogador);
+    cout << "Jogador " << novoJogador.nome << " adicionado com sucesso!" << endl;
+    sleep(2);
+
+    clearScreen();
+}
+
+void lista(const vector<Jogador>& jogadores, const Time& clube) {
+    ofstream file("lista.txt");
+
+    file << "Relatorio de Jogadores" << endl << endl;
+    for (const auto& jogador : jogadores) {
+        file << "Nome: " << jogador.nome << endl
+            << "Posicao: " << jogador.pos << endl
+            << "Idade: " << jogador.idade << endl
+            << "Gols: " << jogador.desempenho.gols << endl
+            << "Assistencias: " << jogador.desempenho.assis << endl
+            << "Partidas: " << jogador.desempenho.partidas << endl
+            << "Vitorias: " << jogador.desempenho.vitorias << endl
+            << "Derrotas: " << jogador.desempenho.derrotas << endl
+            << "Empates: " << jogador.desempenho.empates << endl << endl;
+    }
+
+    file << "Desempenho do Time" << endl << endl;
+    file << "Time: " << clube.nomeTime << endl
+        << "Gols Marcados: " << clube.golsMarcados << endl
+        << "Gols Sofridos: " << clube.golsSofridos << endl
+        << "Vitorias: " << clube.vitorias << endl
+        << "Empates: " << clube.empates << endl
+        << "Derrotas: " << clube.derrotas << endl
+        << "Titulos: " << clube.titulos << endl << endl;
+
+    file.close();
+    cout << endl << "Relatorio gerado com sucesso!" << endl;
+    sleep(3);
+    clearScreen();
 }

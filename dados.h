@@ -32,23 +32,24 @@ typedef struct {
     int titulos;
 } Time;
 
+void clearScreen();
 void preencheJogadores(vector<Jogador>& jogadores);
 void preencheTime(Time& clube);
-bool compareByName(const Jogador& a, const Jogador& b);
+bool compareNome(const Jogador& a, const Jogador& b);
 string toLower(const string& str);
-int buscaBinaria(const vector<Jogador>& jogadores, const string& nome);
+int buscaBinaria(const vector<Jogador>& jogadores, const string& nome, int esquerda, int direita);
 void buscarJogador(vector<Jogador>& jogadores);
 void listarJogadores(const vector<Jogador>& jogadores);
 void desempenhoJogador(vector<Jogador>& jogadores, int indice);
 void mostrarTitulos();
-void mostrarTabelas();
-void brasileirao();
-void gaucho();
-void cdb();
-void libertadores();
-void mostrarJogos();
 void mostrarDesempenho(Time& clube);
 void insertionSort(vector<Jogador>& jogadores, int nmr);
 void mostrarArtilharia(const vector<Jogador>& jogadores);
+void gerencia(vector<Jogador>& jogadores);
+void excluirJogador(vector<Jogador>& jogadores);
+bool jogadorExiste(const vector<Jogador>& jogadores, const string& nome);
+void addNovoJogador(vector<Jogador>& jogadores);
+void lista(const vector<Jogador>& jogadores, const Time& clube);
 
-#endif // DADOS_H
+
+#endif

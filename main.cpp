@@ -1,12 +1,12 @@
 #include "dados.h"
 #include <iostream>
-#include <conio.h>
 #include <vector>
+#include <stdlib.h>
 
 using namespace std;
 
 int main() {
-    cout << "\033[2J\033[1;1H";
+    clearScreen();
     Time clube = {};
     vector<Jogador> jogadores;
     preencheJogadores(jogadores);
@@ -16,12 +16,12 @@ int main() {
     
     while (op != 8) {
         cout << "1. Titulos" << endl;
-        cout << "2. Tabela" << endl;
-        cout << "3. Proximos jogos" << endl;
-        cout << "4. Desempenho" << endl;
-        cout << "5. Artilharia" << endl;
-        cout << "6. Listar Jogadores" << endl;
-        cout << "7. Buscar Jogador" << endl;
+        cout << "2. Desempenho" << endl;
+        cout << "3. Artilharia" << endl;
+        cout << "4. Listar Jogadores" << endl;
+        cout << "5. Buscar Jogador" << endl;
+        cout << "6. Gerenciar jogadores" << endl;
+        cout << "7. Gerar relatorio" << endl;
         cout << "8. Sair" << endl;
         cout << "Escolha uma opcao: ";
 
@@ -45,25 +45,25 @@ int main() {
                 mostrarTitulos();
                 break;
             case 2:
-                mostrarTabelas();
-                break;
-            case 3:
-                mostrarJogos();
-                break;
-            case 4:
                 mostrarDesempenho(clube);
                 break;
-            case 5:
+            case 3:
                 mostrarArtilharia(jogadores);
                 break;
-            case 6:
+            case 4:
                 listarJogadores(jogadores);
                 break;
-            case 7:
+            case 5:
                 buscarJogador(jogadores);
                 break;
+            case 6:
+                gerencia(jogadores);
+                break;
+            case 7:
+                lista(jogadores, clube);
+                break;
             case 8:
-                cout << "Saindo do programa." << endl;
+                cout << "Programa finalizado." << endl;
                 return 0;
             default:
                 cout << "Opcao invalida. Tente novamente." << endl;
